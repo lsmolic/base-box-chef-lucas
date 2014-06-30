@@ -36,9 +36,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
-  # config.ssh.forward_agent = true
-  config.ssh.username = "vg"
-  config.ssh.private_key_path = "./vg.key"
+  config.ssh.forward_agent = true
+  #config.ssh.username = "vg"
+  #config.ssh.private_key_path = "./keys/vg.key"
 
 
   # Share an additional folder to the guest VM. The first argument is
@@ -67,12 +67,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # some recipes and/or roles.
   #
   config.vm.provision "chef_solo" do |chef|
- 	chef.cookbooks_path = "./chef-repo/cookbooks"
- 	chef.roles_path = "./chef-repo/roles"
- 	chef.data_bags_path =  "./chef-repo/data_bags"
- 	chef.environments_path = "./chef-repo/environments"
- 	chef.environment = "local"
-	chef.add_role "base"
+   	chef.cookbooks_path = "./chef-repo/cookbooks"
+   	chef.roles_path = "./chef-repo/roles"
+   	chef.data_bags_path =  "./chef-repo/data_bags"
+   	chef.environments_path = "./chef-repo/environments"
+   	chef.environment = "local"
+  	chef.add_role "base"
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
