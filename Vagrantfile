@@ -37,7 +37,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
   # config.ssh.forward_agent = true
-  
+  config.ssh.username = "vg"
+  config.ssh.private_key_path = "./vg.key"
 
 
   # Share an additional folder to the guest VM. The first argument is
@@ -52,7 +53,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
    config.vm.provider "virtualbox" do |vb|
   #   # Don't boot with headless mode
-     vb.gui = true
+  #   vb.gui = true
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
   #   vb.customize ["modifyvm", :id, "--memory", "1024"]
