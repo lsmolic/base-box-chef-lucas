@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+chef_environment = ENV['ENVIRONMENT'] || "local" 
+chef_role = ENV['ROLE'] || "base"
+
+
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
@@ -32,13 +36,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  # config.vm.network "public_network"
+   config.vm.network "public_network"
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
   config.ssh.forward_agent = true
-  #config.ssh.username = "vg"
-  #config.ssh.private_key_path = "./keys/vg.key"
+  config.ssh.username = "vg"
+  config.ssh.private_key_path = "./keys/vg.key"
 
 
   # Share an additional folder to the guest VM. The first argument is
@@ -66,13 +70,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # path, and data_bags path (all relative to this Vagrantfile), and adding
   # some recipes and/or roles.
   #
+
   config.vm.provision "chef_solo" do |chef|
    	chef.cookbooks_path = "./chef-repo/cookbooks"
    	chef.roles_path = "./chef-repo/roles"
    	chef.data_bags_path =  "./chef-repo/data_bags"
    	chef.environments_path = "./chef-repo/environments"
-   	chef.environment = "local"
-  	chef.add_role "base"
+   	chef.environment = chef_environment
+  	chef.add_role chef_role
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
