@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-   config.vm.network "public_network"
+  # config.vm.network "public_network", bridge: 'en0'
 
   # If true, then any SSH connections made will enable agent forwarding.
   # Default value: false
@@ -77,6 +77,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
    	chef.data_bags_path =  "./chef-repo/data_bags"
    	chef.environments_path = "./chef-repo/environments"
    	chef.environment = chef_environment
+    chef.log_level = "debug"
+    chef.verbose_logging = true
   	chef.add_role chef_role
   end
 
