@@ -55,7 +55,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
+
+  #  VBoxManage setextradata omaze-vagrant_default_1404772446483_15157 VBoxInternal2/SharedFoldersEnableSymlinksCreate/shared 1
+
    config.vm.provider "virtualbox" do |vb|
+      vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/shared", "1"]
+
+
   #   # Don't boot with headless mode
   #   vb.gui = true
   #
